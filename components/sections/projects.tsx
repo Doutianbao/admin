@@ -7,12 +7,39 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { FileText, Sparkles, ExternalLink, Calendar, MapPin } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 
+type ConferenceDetail = {
+  title: string;
+  url: string;
+};
+
+type Achievement = {
+  conference: string;
+  title: string;
+  items: string[];
+  total: string;
+  tags: string[];
+  gradient: string;
+  link: string;
+  details: ConferenceDetail[];
+  location: string;
+  date: string;
+  highlight?: boolean;
+  upcoming?: boolean;
+};
+
+type ConferenceYear = {
+  year: string;
+  yearColor: string;
+  yearBg: string;
+  achievements: Achievement[];
+};
+
 export function Projects() {
-  const [selectedConference, setSelectedConference] = useState<any>(null);
+  const [selectedConference, setSelectedConference] = useState<Achievement | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const { t, language } = useLanguage();
 
-  const getConferenceData = () => {
+  const getConferenceData = (): ConferenceYear[] => {
     const isZh = language === "zh";
 
     return [
@@ -363,7 +390,7 @@ export function Projects() {
                   {t("projects.list")}
                 </h4>
                 <div className="space-y-2">
-                  {selectedConference.details?.map((detail: any, index: number) => (
+                  {selectedConference.details?.map((detail, index) => (
                     <a
                       key={index}
                       href={detail.url}

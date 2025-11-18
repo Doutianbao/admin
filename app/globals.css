@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Apple 设计语言 - 纯净、优雅 */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    /* 主色：Apple 蓝 */
+    --primary: 211 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    /* 次要色：优雅的灰 */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 10%;
+
+    /* 柔和色：浅灰 */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    /* 强调色：Apple 橙 */
+    --accent: 28 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 211 100% 50%;
+    --radius: 1rem;
+
+    /* 图表颜色 - Apple 风格 */
+    --chart-1: 211 100% 50%;
+    --chart-2: 28 100% 50%;
+    --chart-3: 142 71% 45%;
+    --chart-4: 262 52% 47%;
+    --chart-5: 346 83% 47%;
+  }
+
+  .dark {
+    /* 暗色模式 - Apple 深色风格 */
+    --background: 0 0% 7%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    /* 主色：明亮的 Apple 蓝 */
+    --primary: 211 100% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    /* 次要色：深灰 */
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    /* 柔和色：中灰 */
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    /* 强调色：柔和橙 */
+    --accent: 28 100% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 211 100% 60%;
+
+    /* 图表颜色 - 暗色模式 */
+    --chart-1: 211 100% 60%;
+    --chart-2: 28 100% 55%;
+    --chart-3: 142 71% 50%;
+    --chart-4: 262 52% 55%;
+    --chart-5: 346 83% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  /* Apple 风格动画 */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Apple 风格渐变 */
+  .bg-gradient-apple-blue {
+    background: linear-gradient(135deg, hsl(211 100% 50%) 0%, hsl(211 100% 60%) 100%);
+  }
+
+  .bg-gradient-apple-orange {
+    background: linear-gradient(135deg, hsl(28 100% 50%) 0%, hsl(28 100% 60%) 100%);
+  }
+
+  /* 玻璃态效果 */
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+
+  .glass-effect-dark {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+}

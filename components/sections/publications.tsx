@@ -4,72 +4,20 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BookOpen, ExternalLink, Calendar } from "lucide-react";
 
+import { useLanguage } from "@/lib/language-context";
+import { publications } from "@/lib/data";
+
 export function Publications() {
-  const publications = [
-    {
-      title: "Neoadjuvant pyrotinib plus nab-paclitaxel, doxorubicin, and cyclophosphamide for HER2-positive locally advanced breast cancer: a retrospective case-series study",
-      journal: "Gland Surgery",
-      year: "2023",
-      url: "http://gs.amegroups.org/article/view/86303/html",
-      tags: ["HER2阳性乳腺癌", "新辅助治疗", "Pyrotinib"],
-      color: "from-blue-500/20 to-cyan-500/20",
-    },
-    {
-      title: "Cardiotoxicity monitoring of pyrotinib in combination with nab-paclitaxel, doxorubicin, and cyclophosphamide in HER2-positive breast cancer: a single-armed clinical trial",
-      journal: "Gland Surgery",
-      year: "2023",
-      url: "https://gs.amegroups.org/article/view/93437/html",
-      tags: ["心脏毒性", "HER2阳性乳腺癌", "安全性监测"],
-      color: "from-green-500/20 to-emerald-500/20",
-    },
-    {
-      title: "The efficacy and safety of using pyrotinib combined with capecitabine as neoadjuvant therapy in elderly patients with HER2-positive breast cancer: a single-arm prospective clinical trial",
-      journal: "Gland Surgery",
-      year: "2024",
-      url: "https://gs.amegroups.org/article/view/110610/html",
-      tags: ["老年患者", "HER2阳性乳腺癌", "新辅助治疗"],
-      color: "from-purple-500/20 to-pink-500/20",
-    },
-    {
-      title: "Real‐world data for the renal safety of abemaciclib combined with bisphosphonate in HR+/HER2− advanced breast cancer",
-      journal: "Thoracic Cancer",
-      year: "2023",
-      url: "https://onlinelibrary.wiley.com/doi/10.1111/1759-7714.14715",
-      tags: ["真实世界研究", "肾脏安全性", "CDK4/6抑制剂"],
-      color: "from-orange-500/20 to-red-500/20",
-    },
-    {
-      title: "Apatinib plus etoposide in pretreated patients with advanced triple-negative breast cancer: a phase II trial",
-      journal: "BMC Cancer",
-      year: "2023",
-      url: "https://bmccancer.biomedcentral.com/articles/10.1186/s12885-023-10768-8",
-      tags: ["三阴性乳腺癌", "II期临床试验", "Apatinib"],
-      color: "from-pink-500/20 to-rose-500/20",
-    },
-    {
-      title: "Combination Therapy of Pyrotinib and Metronomic Vinorelbine in HER2+ Advanced Breast Cancer after Trastuzumab Failure (PROVE): A Prospective Phase 2 Study",
-      journal: "Cancer Research and Treatment",
-      year: "2024",
-      url: "https://e-crt.org/journal/view.php?doi=10.4143/crt.2024.340",
-      tags: ["HER2阳性乳腺癌", "II期临床试验", "赫赛汀耐药"],
-      color: "from-teal-500/20 to-cyan-500/20",
-    },
-    {
-      title: "Dalpiciclib Plus fulvestrant and pyrotinib in HR+/HER2-low advanced breast cancer after progression on CDK4/6 Inhibition (DapPLE-HER): a bayesian optimal phase II study",
-      journal: "International Journal of Surgery",
-      year: "2024",
-      url: "https://journals.lww.com/international-journal-of-surgery/abstract/9900/dalpiciclib_plus_fulvestrant_and_pyrotinib_in.3261.aspx",
-      tags: ["HER2-low", "CDK4/6抑制剂", "贝叶斯设计"],
-      color: "from-yellow-500/20 to-amber-500/20",
-    },
-    {
-      title: "Clinical efficacy and therapy response prediction of neoadjuvant dalpiciclib plus letrozole in postmenopausal patients with HR+/HER2- stage II-III breast cancer (DARLING 01): a single-arm, open-label, exploratory study",
-      journal: "Breast Cancer Research",
-      year: "2025",
-      url: "https://breast-cancer-research.biomedcentral.com/articles/10.1186/s13058-025-01976-0",
-      tags: ["CDK4/6抑制剂", "新辅助治疗", "疗效预测"],
-      color: "from-indigo-500/20 to-blue-500/20",
-    },
+  const { language } = useLanguage();
+  const gradients = [
+    "from-blue-500/20 to-cyan-500/20",
+    "from-green-500/20 to-emerald-500/20",
+    "from-purple-500/20 to-pink-500/20",
+    "from-orange-500/20 to-red-500/20",
+    "from-pink-500/20 to-rose-500/20",
+    "from-teal-500/20 to-cyan-500/20",
+    "from-yellow-500/20 to-amber-500/20",
+    "from-indigo-500/20 to-blue-500/20",
   ];
 
   return (
@@ -100,7 +48,7 @@ export function Publications() {
               }}
             >
               {/* 渐变背景 */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${pub.color} opacity-50 group-hover:opacity-100 transition-opacity duration-500`} />
+              <div className={`absolute inset-0 bg-gradient-to-br ${gradients[index % gradients.length]} opacity-50 group-hover:opacity-100 transition-opacity duration-500`} />
 
               <CardHeader className="relative space-y-3">
                 <div className="flex items-center justify-between gap-2">
@@ -120,7 +68,7 @@ export function Publications() {
               <CardContent className="relative space-y-4">
                 {/* 标签 */}
                 <div className="flex flex-wrap gap-2">
-                  {pub.tags.map((tag) => (
+                  {pub.tags[language].map((tag) => (
                     <Badge
                       key={tag}
                       variant="secondary"

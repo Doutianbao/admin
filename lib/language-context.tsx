@@ -78,6 +78,10 @@ const translations = {
     "testimonials.title": "客户评价",
     "testimonials.subtitle": "来自合作医院的专业认可",
 
+    // Stats
+    "stats.top_conferences": "顶级会议",
+    "stats.years": "年度跨度",
+
     // Publications Dialog
     "publications.title": "全文发表",
     "publications.subtitle": "8 篇高质量学术论文发表于国际期刊",
@@ -147,6 +151,10 @@ const translations = {
     // Testimonials
     "testimonials.title": "Testimonials",
     "testimonials.subtitle": "Professional Recognition from Partner Hospitals",
+
+    // Stats
+    "stats.top_conferences": "Top Conferences",
+    "stats.years": "Years Span",
 
     // Publications Dialog
     "publications.title": "Full-Text Publications",

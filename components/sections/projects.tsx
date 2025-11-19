@@ -35,8 +35,8 @@ export function Projects() {
             <div key={yearData.year} className="relative mb-12 last:mb-0">
               {/* 年份标题 - Apple 风格 */}
               <div className="flex items-center gap-6 mb-8">
-                <div className={`relative ${yearData.yearBg} text-white px-6 py-3 rounded-2xl shadow-sm`}>
-                  <div className="text-3xl font-semibold">{yearData.year}</div>
+                <div className={`relative ${yearData.yearBg} bg-opacity-10 dark:bg-opacity-20 px-6 py-3 rounded-2xl shadow-sm`}>
+                  <div className={`text-3xl font-semibold ${yearData.yearColor}`}>{yearData.year}</div>
                 </div>
                 <div className="flex-1 h-px bg-border"></div>
               </div>

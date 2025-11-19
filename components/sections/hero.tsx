@@ -11,7 +11,7 @@ import { toast } from "sonner";
 
 export function Hero() {
   const [isPublicationsOpen, setIsPublicationsOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section id="hero" className="relative container mx-auto px-6 pt-32 pb-20 md:pt-40 md:pb-28 min-h-screen flex items-center">
@@ -182,7 +182,7 @@ export function Hero() {
 
                   {/* 标签 */}
                   <div className="flex flex-wrap gap-1.5">
-                    {pub.tags.map((tag) => (
+                    {pub.tags[language].map((tag) => (
                       <Badge
                         key={tag}
                         variant="secondary"

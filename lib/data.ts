@@ -15,7 +15,7 @@ export interface Publication {
   journal: string;
   year: string;
   url: string;
-  tags: string[];
+  tags: LocalizedArray;
 }
 
 export interface ConferenceDetail {
@@ -83,56 +83,80 @@ export const publications: Publication[] = [
     journal: "Gland Surgery",
     year: "2022",
     url: "http://gs.amegroups.org/article/view/86303/html",
-    tags: ["HER2阳性乳腺癌", "新辅助治疗", "Pyrotinib"],
+    tags: {
+      zh: ["HER2阳性乳腺癌", "新辅助治疗", "Pyrotinib"],
+      en: ["HER2+ Breast Cancer", "Neoadjuvant Therapy", "Pyrotinib"],
+    },
   },
   {
     title: "Cardiotoxicity monitoring of pyrotinib in combination with nab-paclitaxel, doxorubicin, and cyclophosphamide in HER2-positive breast cancer: a single-armed clinical trial",
     journal: "Gland Surgery",
     year: "2022",
     url: "https://gs.amegroups.org/article/view/93437/html",
-    tags: ["心脏毒性", "HER2阳性乳腺癌", "安全性监测"],
+    tags: {
+      zh: ["心脏毒性", "HER2阳性乳腺癌", "安全性监测"],
+      en: ["Cardiotoxicity", "HER2+ Breast Cancer", "Safety Monitoring"],
+    },
   },
   {
     title: "The efficacy and safety of using pyrotinib combined with capecitabine as neoadjuvant therapy in elderly patients with HER2-positive breast cancer: a single-arm prospective clinical trial",
     journal: "Gland Surgery",
     year: "2023",
     url: "https://gs.amegroups.org/article/view/110610/html",
-    tags: ["老年患者", "HER2阳性乳腺癌", "新辅助治疗"],
+    tags: {
+      zh: ["老年患者", "HER2阳性乳腺癌", "新辅助治疗"],
+      en: ["Elderly Patients", "HER2+ Breast Cancer", "Neoadjuvant Therapy"],
+    },
   },
   {
     title: "Real‐world data for the renal safety of abemaciclib combined with bisphosphonate in HR+/HER2− advanced breast cancer",
     journal: "Thoracic Cancer",
     year: "2022",
     url: "https://onlinelibrary.wiley.com/doi/10.1111/1759-7714.14715",
-    tags: ["真实世界研究", "肾脏安全性", "CDK4/6抑制剂"],
+    tags: {
+      zh: ["真实世界研究", "肾脏安全性", "CDK4/6抑制剂"],
+      en: ["Real-World Study", "Renal Safety", "CDK4/6 Inhibitor"],
+    },
   },
   {
     title: "Apatinib plus etoposide in pretreated patients with advanced triple-negative breast cancer: a phase II trial",
     journal: "BMC Cancer",
     year: "2023",
     url: "https://bmccancer.biomedcentral.com/articles/10.1186/s12885-023-10768-8",
-    tags: ["三阴性乳腺癌", "II期临床试验", "Apatinib"],
+    tags: {
+      zh: ["三阴性乳腺癌", "II期临床试验", "Apatinib"],
+      en: ["TNBC", "Phase II Trial", "Apatinib"],
+    },
   },
   {
     title: "Combination Therapy of Pyrotinib and Metronomic Vinorelbine in HER2+ Advanced Breast Cancer after Trastuzumab Failure (PROVE): A Prospective Phase 2 Study",
     journal: "Cancer Research and Treatment",
     year: "2025",
     url: "https://e-crt.org/journal/view.php?doi=10.4143/crt.2024.340",
-    tags: ["HER2阳性乳腺癌", "II期临床试验", "赫赛汀耐药"],
+    tags: {
+      zh: ["HER2阳性乳腺癌", "II期临床试验", "赫赛汀耐药"],
+      en: ["HER2+ Breast Cancer", "Phase II Trial", "Trastuzumab Resistance"],
+    },
   },
   {
     title: "Dalpiciclib Plus fulvestrant and pyrotinib in HR+/HER2-low advanced breast cancer after progression on CDK4/6 Inhibition (DapPLE-HER): a bayesian optimal phase II study",
     journal: "International Journal of Surgery",
     year: "2025",
     url: "https://journals.lww.com/international-journal-of-surgery/abstract/9900/dalpiciclib_plus_fulvestrant_and_pyrotinib_in.3261.aspx",
-    tags: ["HER2-low", "CDK4/6抑制剂", "贝叶斯设计"],
+    tags: {
+      zh: ["HER2-low", "CDK4/6抑制剂", "贝叶斯设计"],
+      en: ["HER2-low", "CDK4/6 Inhibitor", "Bayesian Design"],
+    },
   },
   {
     title: "Clinical efficacy and therapy response prediction of neoadjuvant dalpiciclib plus letrozole in postmenopausal patients with HR+/HER2- stage II-III breast cancer (DARLING 01): a single-arm, open-label, exploratory study",
     journal: "Breast Cancer Research",
     year: "2025",
     url: "https://breast-cancer-research.biomedcentral.com/articles/10.1186/s13058-025-01976-0",
-    tags: ["CDK4/6抑制剂", "新辅助治疗", "疗效预测"],
+    tags: {
+      zh: ["CDK4/6抑制剂", "新辅助治疗", "疗效预测"],
+      en: ["CDK4/6 Inhibitor", "Neoadjuvant Therapy", "Efficacy Prediction"],
+    },
   },
 ];
 

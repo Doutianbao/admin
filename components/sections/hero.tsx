@@ -6,69 +6,12 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Badge } from "@/components/ui/badge";
 import { Github, Mail, Video, BookOpen, ExternalLink, Calendar, MessageCircle } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
+import { publications } from "@/lib/data";
+import { toast } from "sonner";
 
 export function Hero() {
   const [isPublicationsOpen, setIsPublicationsOpen] = useState(false);
   const { t } = useLanguage();
-
-  const publications = [
-    {
-      title: "Neoadjuvant pyrotinib plus nab-paclitaxel, doxorubicin, and cyclophosphamide for HER2-positive locally advanced breast cancer: a retrospective case-series study",
-      journal: "Gland Surgery",
-      year: "2022",
-      url: "http://gs.amegroups.org/article/view/86303/html",
-      tags: ["HER2阳性乳腺癌", "新辅助治疗", "Pyrotinib"],
-    },
-    {
-      title: "Cardiotoxicity monitoring of pyrotinib in combination with nab-paclitaxel, doxorubicin, and cyclophosphamide in HER2-positive breast cancer: a single-armed clinical trial",
-      journal: "Gland Surgery",
-      year: "2022",
-      url: "https://gs.amegroups.org/article/view/93437/html",
-      tags: ["心脏毒性", "HER2阳性乳腺癌", "安全性监测"],
-    },
-    {
-      title: "The efficacy and safety of using pyrotinib combined with capecitabine as neoadjuvant therapy in elderly patients with HER2-positive breast cancer: a single-arm prospective clinical trial",
-      journal: "Gland Surgery",
-      year: "2023",
-      url: "https://gs.amegroups.org/article/view/110610/html",
-      tags: ["老年患者", "HER2阳性乳腺癌", "新辅助治疗"],
-    },
-    {
-      title: "Real‐world data for the renal safety of abemaciclib combined with bisphosphonate in HR+/HER2− advanced breast cancer",
-      journal: "Thoracic Cancer",
-      year: "2022",
-      url: "https://onlinelibrary.wiley.com/doi/10.1111/1759-7714.14715",
-      tags: ["真实世界研究", "肾脏安全性", "CDK4/6抑制剂"],
-    },
-    {
-      title: "Apatinib plus etoposide in pretreated patients with advanced triple-negative breast cancer: a phase II trial",
-      journal: "BMC Cancer",
-      year: "2023",
-      url: "https://bmccancer.biomedcentral.com/articles/10.1186/s12885-023-10768-8",
-      tags: ["三阴性乳腺癌", "II期临床试验", "Apatinib"],
-    },
-    {
-      title: "Combination Therapy of Pyrotinib and Metronomic Vinorelbine in HER2+ Advanced Breast Cancer after Trastuzumab Failure (PROVE): A Prospective Phase 2 Study",
-      journal: "Cancer Research and Treatment",
-      year: "2025",
-      url: "https://e-crt.org/journal/view.php?doi=10.4143/crt.2024.340",
-      tags: ["HER2阳性乳腺癌", "II期临床试验", "赫赛汀耐药"],
-    },
-    {
-      title: "Dalpiciclib Plus fulvestrant and pyrotinib in HR+/HER2-low advanced breast cancer after progression on CDK4/6 Inhibition (DapPLE-HER): a bayesian optimal phase II study",
-      journal: "International Journal of Surgery",
-      year: "2025",
-      url: "https://journals.lww.com/international-journal-of-surgery/abstract/9900/dalpiciclib_plus_fulvestrant_and_pyrotinib_in.3261.aspx",
-      tags: ["HER2-low", "CDK4/6抑制剂", "贝叶斯设计"],
-    },
-    {
-      title: "Clinical efficacy and therapy response prediction of neoadjuvant dalpiciclib plus letrozole in postmenopausal patients with HR+/HER2- stage II-III breast cancer (DARLING 01): a single-arm, open-label, exploratory study",
-      journal: "Breast Cancer Research",
-      year: "2025",
-      url: "https://breast-cancer-research.biomedcentral.com/articles/10.1186/s13058-025-01976-0",
-      tags: ["CDK4/6抑制剂", "新辅助治疗", "疗效预测"],
-    },
-  ];
 
   return (
     <section id="hero" className="relative container mx-auto px-6 pt-32 pb-20 md:pt-40 md:pb-28 min-h-screen flex items-center">
@@ -184,7 +127,7 @@ export function Hero() {
               className="rounded-full px-8 h-12 text-base font-medium hover:bg-secondary transition-all duration-300 gap-2"
               onClick={() => {
                 navigator.clipboard.writeText('hbykdx');
-                alert(t("hero.wechat_copied"));
+                toast.success(t("hero.wechat_copied"));
               }}
             >
               <MessageCircle className="w-5 h-5" />

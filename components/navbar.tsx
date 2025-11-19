@@ -4,25 +4,35 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun, Menu, X, ChevronDown, Languages } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
+import { useTheme } from "next-themes";
 
 export function Navbar() {
-  const [isDark, setIsDark] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      if (timeoutId) return;
+      timeoutId = setTimeout(() => {
+        setIsScrolled(window.scrollY > 20);
+        timeoutId = undefined as any;
+      }, 100);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle("dark");
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   const scrollToSection = (id: string) => {
@@ -44,13 +54,14 @@ export function Navbar() {
     { label: language === "zh" ? "AI服务" : "AI Service", url: "https://api.284600.xyz" },
   ];
 
+  if (!mounted) return null;
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
           ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm"
           : "bg-transparent"
-      }`}
+        }`}
     >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
@@ -124,10 +135,10 @@ export function Navbar() {
                 onClick={toggleTheme}
                 className="rounded-full w-9 h-9 hover:bg-secondary/50"
               >
-                {isDark ? (
-                  <Sun className="w-4 h-4" />
-                ) : (
+                {theme === "dark" ? (
                   <Moon className="w-4 h-4" />
+                ) : (
+                  <Sun className="w-4 h-4" />
                 )}
               </Button>
             </div>
@@ -141,10 +152,10 @@ export function Navbar() {
               onClick={toggleTheme}
               className="rounded-full w-9 h-9"
             >
-              {isDark ? (
-                <Sun className="w-4 h-4" />
-              ) : (
+              {theme === "dark" ? (
                 <Moon className="w-4 h-4" />
+              ) : (
+                <Sun className="w-4 h-4" />
               )}
             </Button>
             <Button
@@ -177,7 +188,7 @@ export function Navbar() {
 
             {/* 移动端业余作品 */}
             <div className="px-4 py-2">
-              <p className="text-xs font-semibold text-muted-foreground mb-2">业余作品</p>
+              <p className="text-xs font-semibold text-muted-foreground mb-2">{t("nav.hobby")}</p>
               {hobbyProjects.map((project) => (
                 <a
                   key={project.url}

@@ -67,6 +67,7 @@ export function ParticlesBackground() {
     }
 
     // 动画循环
+    let animationFrameId: number;
     const animate = () => {
       ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
 
@@ -93,13 +94,14 @@ export function ParticlesBackground() {
         });
       });
 
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
     };
 
     animate();
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 

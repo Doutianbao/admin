@@ -14,10 +14,13 @@ interface ProjectCardProps {
 
 export function ProjectCard({ achievement, index, onViewDetails }: ProjectCardProps) {
     const { t, language } = useLanguage();
+    const tags = achievement.tags[language];
+    const displayedTags = tags.slice(0, 3);
+    const remainingTags = tags.length - 3;
 
     return (
         <Card
-            className={`group relative overflow-hidden hover:shadow-lg transition-all duration-500 border border-border/50 hover:border-border rounded-3xl bg-card/50 backdrop-blur-sm ${achievement.highlight ? "ring-2 ring-accent/30" : ""
+            className={`group relative overflow-hidden hover:shadow-2xl transition-all duration-500 border border-border/50 hover:border-border/80 rounded-3xl bg-card/50 backdrop-blur-sm ${achievement.highlight ? "ring-2 ring-accent/30" : ""
                 } ${achievement.upcoming ? "ring-2 ring-primary/30" : ""}`}
             style={{
                 animationDelay: `${index * 150}ms`,
@@ -25,6 +28,9 @@ export function ProjectCard({ achievement, index, onViewDetails }: ProjectCardPr
         >
             {/* 渐变背景 */}
             <div className={`absolute inset-0 bg-gradient-to-br ${achievement.gradient} opacity-50 group-hover:opacity-100 transition-opacity duration-500`} />
+
+            {/* Shimmer Effect */}
+            <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent z-0 pointer-events-none" />
 
             {/* 特殊标记 - Apple 风格 */}
             {achievement.highlight && (
@@ -42,7 +48,7 @@ export function ProjectCard({ achievement, index, onViewDetails }: ProjectCardPr
                 </div>
             )}
 
-            <CardHeader className="relative space-y-3 p-6">
+            <CardHeader className="relative space-y-3 p-6 z-10">
                 <div className="flex items-center gap-2">
                     <Badge variant="outline" className="font-medium rounded-full">
                         {achievement.conference}
@@ -51,17 +57,17 @@ export function ProjectCard({ achievement, index, onViewDetails }: ProjectCardPr
                         {achievement.total[language]}
                     </Badge>
                 </div>
-                <CardTitle className="text-lg font-semibold group-hover:text-primary transition-colors">
+                <CardTitle className="text-xl font-serif font-bold group-hover:text-primary transition-colors leading-tight">
                     {achievement.title[language]}
                 </CardTitle>
             </CardHeader>
 
-            <CardContent className="relative space-y-4 p-6 pt-0">
+            <CardContent className="relative space-y-4 p-6 pt-0 z-10">
                 {/* 成果列表 */}
                 <div className="space-y-2">
                     {achievement.items[language].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2 text-sm">
-                            <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                        <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground/90">
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></div>
                             <span className="font-medium">{item}</span>
                         </div>
                     ))}
@@ -69,23 +75,28 @@ export function ProjectCard({ achievement, index, onViewDetails }: ProjectCardPr
 
                 {/* 标签 */}
                 <div className="flex flex-wrap gap-2 pt-2">
-                    {achievement.tags[language].map((tag) => (
+                    {displayedTags.map((tag) => (
                         <Badge
                             key={tag}
                             variant="secondary"
-                            className="text-xs rounded-full"
+                            className="text-xs rounded-full bg-secondary/50 hover:bg-secondary transition-colors"
                         >
                             {tag}
                         </Badge>
                     ))}
+                    {remainingTags > 0 && (
+                        <Badge variant="outline" className="text-xs rounded-full bg-background/50">
+                            +{remainingTags}
+                        </Badge>
+                    )}
                 </div>
 
                 {/* 查看链接 - Apple 风格 */}
                 <button
                     onClick={() => onViewDetails(achievement)}
-                    className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 font-medium group/link cursor-pointer transition-colors"
+                    className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 font-medium group/link cursor-pointer transition-all duration-300 hover:translate-x-1"
                 >
-                    <FileText className="w-4 h-4 group-hover/link:scale-105 transition-transform" />
+                    <FileText className="w-4 h-4 group-hover/link:scale-110 transition-transform" />
                     {t("projects.view_details")}
                 </button>
             </CardContent>
